@@ -121,12 +121,6 @@ export const TESTIMONIALS = [
     name: "אסף מ.",
     location: "רעות",
   },
-  {
-    quote:
-      "ליאן הציל לי את העצים הוותיקים בגינה אחרי שגוננים אחרים אמרו 'אין מה לעשות'. עבודה ברמה גבוהה.",
-    name: "גלית ש.",
-    location: "מכבים",
-  },
 ] as const;
 
 export const FAQ_ITEMS = [

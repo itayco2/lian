@@ -3,6 +3,7 @@ import { HERO, HERO_BADGES, SITE } from "@/lib/content";
 import { HERO_IMAGE } from "@/lib/images";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { CTAButton } from "@/components/ui/button";
+import { ArrowDown } from "@phosphor-icons/react/dist/ssr";
 
 export function Hero() {
   return (
@@ -17,8 +18,16 @@ export function Hero() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-l from-cream/50 via-transparent to-transparent" />
+        {/* Vertical fade to cream at the bottom (footing under CTAs) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/15 to-transparent" />
+        {/* Localized veil ONLY behind text area — radial gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 80% at 75% 50%, rgba(247,244,237,0.78) 0%, rgba(247,244,237,0.45) 35%, rgba(247,244,237,0) 70%)",
+          }}
+        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-10">
@@ -52,6 +61,16 @@ export function Hero() {
               <span>שירות ב{SITE.serviceArea}</span>
             </div>
           </div>
+
+          {/* Scroll cue */}
+          <a
+            href="#about"
+            aria-label="גלילה למטה"
+            className="scroll-cue absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-espresso/15 bg-cream/70 px-4 py-2 text-xs text-espresso/70 backdrop-blur-md md:inline-flex"
+          >
+            <span>גלילה</span>
+            <ArrowDown size={14} weight="bold" />
+          </a>
 
           {/* Right-side trust badges (asymmetric editorial pull-out) */}
           <aside className="hidden md:col-span-4 md:flex md:items-end md:justify-end">

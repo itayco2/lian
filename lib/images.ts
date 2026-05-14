@@ -13,7 +13,9 @@ export const ABOUT_IMAGE = {
 
 export const SERVICE_IMAGES: Record<string, string> = {
   maintenance: "/images/service-maintenance.jpg",
-  pruning: "/images/service-pruning.jpg",
-  planting: "/images/service-planting.jpg",
+  // pruning gets the monstera (closer to leaves/branches) until a real pruning shot arrives
+  pruning: "/images/service-planting.jpg",
+  // planting gets the hands-with-soil (perfect match: planting = soil)
+  planting: "/images/service-pruning.jpg",
   design: "/images/service-design.jpg",
 };

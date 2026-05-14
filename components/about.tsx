@@ -53,12 +53,17 @@ export function About() {
                   sizes="(min-width: 768px) 40vw, 100vw"
                   className="object-cover"
                 />
-                <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-cream/60 bg-cream/85 px-5 py-4 backdrop-blur-md">
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-espresso/60">
-                    מייסד
+                <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-cream/60 bg-cream/90 px-5 py-4 backdrop-blur-md flex items-center justify-between gap-3">
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.22em] text-espresso/60">
+                      מייסד
+                    </div>
+                    <div className="display mt-1 text-2xl text-forest">ליאן</div>
+                    <div className="mt-1 text-xs text-espresso/65">גנן ראשי ומעצב גינות</div>
                   </div>
-                  <div className="display mt-1 text-2xl text-forest">ליאן</div>
-                  <div className="mt-1 text-sm text-espresso/70">גנן ראשי ומעצב גינות</div>
+                  <div className="shrink-0 rounded-full bg-forest text-cream px-3 py-1.5 text-[11px] tracking-wide">
+                    אישית, מהיום הראשון
+                  </div>
                 </div>
               </div>
             </div>

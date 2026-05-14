@@ -18,25 +18,11 @@ const ICONS = {
   Plant,
 };
 
-// Asymmetric bento spans (large, small, small, large)
-const SPANS = [
-  "md:col-span-7 md:row-span-2",
-  "md:col-span-5",
-  "md:col-span-5",
-  "md:col-span-7",
-];
-
-const ASPECTS = [
-  "aspect-[16/12]",
-  "aspect-[16/10]",
-  "aspect-[16/10]",
-  "aspect-[16/9]",
-];
-
 export function Services() {
   return (
     <section id="services" className="relative py-32 md:py-40 bg-cream-deep/30">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+        {/* Header */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
           <Reveal className="md:col-span-8">
             <Eyebrow>השירותים שלנו</Eyebrow>
@@ -46,62 +32,92 @@ export function Services() {
             </h2>
           </Reveal>
           <Reveal delay={150} className="md:col-span-4">
-            <p className="text-lg leading-relaxed text-espresso/70 max-w-md">
+            <p className="text-lg leading-relaxed text-espresso/70 max-w-md md:ms-auto">
               כל שירות נבנה סביב הצרכים הייחודיים של הגינה שלכם. בלי שבלונות.
               בלי קיצורי דרך.
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-6">
+        {/* Editorial stripes — full-width rows, alternating image side */}
+        <div className="mt-20 md:mt-28 divide-y divide-forest/12">
           {SERVICES.map((s, i) => {
             const Icon = ICONS[s.iconName as keyof typeof ICONS];
+            const imageLeft = i % 2 === 0; // 0,2 — image visually on the LEFT in RTL row
+
             return (
-              <Reveal key={s.title} delay={i * 90} className={SPANS[i]}>
-                <article className="bezel-outer h-full group">
-                  <div className="bezel-inner relative h-full overflow-hidden">
-                    <div className={`relative ${ASPECTS[i]}`}>
+              <Reveal key={s.title} delay={i * 90}>
+                <article
+                  className={[
+                    "group grid grid-cols-1 gap-8 py-12 md:py-20 md:grid-cols-12 md:gap-14 items-center",
+                  ].join(" ")}
+                >
+                  {/* Image cell */}
+                  <div
+                    className={[
+                      "md:col-span-6 relative",
+                      imageLeft ? "md:order-2" : "md:order-1",
+                    ].join(" ")}
+                  >
+                    <div className="relative aspect-[5/4] overflow-hidden rounded-3xl">
                       <Image
                         src={SERVICE_IMAGES[s.imageKey]}
                         alt={s.title}
                         fill
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-1000 ease-soft group-hover:scale-[1.04]"
+                        sizes="(min-width: 768px) 45vw, 100vw"
+                        className="object-cover transition-transform duration-[1200ms] ease-soft group-hover:scale-[1.05]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-espresso/15 to-transparent" />
-                      <div className="absolute right-5 top-5">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-cream/85 text-forest backdrop-blur-md">
-                          <Icon size={20} weight="light" />
-                        </span>
+                      {/* Accent corner badge with the service icon */}
+                      <div className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-cream/90 text-forest backdrop-blur-md transition-transform duration-700 ease-soft group-hover:scale-110">
+                        <Icon size={22} weight="light" />
                       </div>
                     </div>
+                  </div>
 
-                    <div className="p-6 md:p-8">
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="display text-2xl md:text-3xl text-espresso">
-                          {s.title}
-                        </h3>
-                        <span
-                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest/5 text-forest transition-all duration-500 ease-soft group-hover:bg-forest group-hover:text-cream group-hover:-translate-x-1"
-                          aria-hidden
+                  {/* Content cell */}
+                  <div
+                    className={[
+                      "md:col-span-6",
+                      imageLeft ? "md:order-1" : "md:order-2",
+                    ].join(" ")}
+                  >
+                    {/* Big number eyebrow */}
+                    <div className="flex items-baseline gap-4">
+                      <span
+                        className="display text-5xl md:text-6xl text-forest/15 font-medium"
+                        dir="ltr"
+                      >
+                        0{i + 1}
+                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.22em] text-espresso/55">
+                        מתחום ההתמחות שלנו
+                      </span>
+                    </div>
+
+                    <h3 className="display mt-5 text-3xl md:text-5xl text-espresso leading-[1.05]">
+                      {s.title}
+                    </h3>
+
+                    <p className="mt-6 text-lg leading-relaxed text-espresso/75 max-w-prose">
+                      {s.blurb}
+                    </p>
+
+                    <ul className="mt-7 flex flex-wrap gap-2">
+                      {s.items.map((it) => (
+                        <li
+                          key={it}
+                          className="rounded-full border border-forest/15 bg-cream/60 px-3.5 py-1.5 text-[13px] text-espresso/80"
                         >
-                          <ArrowUpLeft size={16} weight="light" />
-                        </span>
-                      </div>
-                      <p className="mt-3 text-[15px] leading-relaxed text-espresso/70 max-w-prose">
-                        {s.blurb}
-                      </p>
+                          {it}
+                        </li>
+                      ))}
+                    </ul>
 
-                      <ul className="mt-5 flex flex-wrap gap-2">
-                        {s.items.map((it) => (
-                          <li
-                            key={it}
-                            className="rounded-full border border-forest/12 bg-forest/[0.04] px-3 py-1 text-[12px] text-espresso/75"
-                          >
-                            {it}
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Hover accent line — draws under the title on hover */}
+                    <div className="mt-8 flex items-center gap-3 text-sm text-forest/70 transition-colors duration-500 ease-soft group-hover:text-forest">
+                      <span className="block h-px w-10 bg-forest/30 transition-all duration-700 ease-soft group-hover:w-20 group-hover:bg-forest" />
+                      <span>שירות כלול בייעוץ הראשוני</span>
+                      <ArrowUpLeft size={14} weight="light" className="transition-transform duration-500 ease-soft group-hover:-translate-x-1 group-hover:-translate-y-0.5" />
                     </div>
                   </div>
                 </article>

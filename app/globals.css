@@ -87,6 +87,34 @@ body {
   overflow: hidden;
 }
 
+/* Ken Burns slow zoom for hero image */
+.ken-burns {
+  animation: kenburns 22s ease-in-out infinite alternate;
+  transform-origin: center 60%;
+}
+@keyframes kenburns {
+  0%   { transform: scale(1.08) translate3d(0, 0, 0); }
+  100% { transform: scale(1.18) translate3d(-1%, -1%, 0); }
+}
+
+/* Scroll cue */
+.scroll-cue {
+  animation: scrollcue 2.4s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+}
+@keyframes scrollcue {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%      { transform: translateY(6px); opacity: 1; }
+}
+
+/* Subtle marquee for neighborhoods */
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* Reveal-on-scroll util (server-rendered: starts hidden, IntersectionObserver activates) */
 .reveal {
   opacity: 0;

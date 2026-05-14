@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Lian Gardens — גננות מקצועית במודיעין | עיצוב, הקמה ותחזוקה",
   description:
     "Lian Gardens — גננות מקצועית במודיעין והאזור. תחזוקת גינות, עיצוב והקמה, גיזום עצים ושתילה. ייעוץ אישי ועבודה מדויקת.",
-  metadataBase: new URL("https://lian-rose.vercel.app"),
+  metadataBase: new URL("https://liangardens.vercel.app"),
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },

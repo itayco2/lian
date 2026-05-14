@@ -15,26 +15,30 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close on Escape
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-5 md:pt-6">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex flex-col items-center px-4 pt-5 md:pt-6">
       <nav
         className={[
           "pointer-events-auto flex items-center gap-2 rounded-full",
-          "border border-forest/10 transition-all duration-500 ease-soft",
+          "transition-all duration-500 ease-soft",
           scrolled
-            ? "bg-cream/85 backdrop-blur-xl shadow-[0_10px_30px_-20px_rgba(31,61,43,0.4)]"
-            : "bg-cream/60 backdrop-blur-md",
+            ? "bg-cream/95 backdrop-blur-xl border border-forest/15 shadow-[0_14px_40px_-20px_rgba(31,61,43,0.45)]"
+            : "bg-cream/85 backdrop-blur-2xl border border-forest/12 shadow-[0_10px_30px_-22px_rgba(31,61,43,0.4)]",
           "pr-2 pl-3 py-2 md:pr-3 md:pl-4",
         ].join(" ")}
       >
         <Link
           href="/"
           aria-label="Lian Gardens — חזרה לבית"
-          className="display text-lg md:text-xl tracking-tight px-3 pl-2 text-forest"
+          className="font-body text-sm md:text-base font-medium tracking-[0.18em] uppercase text-forest px-3 pl-2"
         >
           Lian Gardens
         </Link>
@@ -84,43 +88,41 @@ export function Nav() {
         </button>
       </nav>
 
-      {/* Mobile expanded overlay */}
+      {/* Mobile dropdown menu — floats below the pill, doesn't take over the screen */}
       <div
         className={[
-          "pointer-events-auto fixed inset-0 z-40 md:hidden",
-          "transition-opacity duration-500 ease-soft",
-          open ? "opacity-100" : "pointer-events-none opacity-0",
+          "mt-3 w-[calc(100%-2rem)] max-w-sm overflow-hidden rounded-3xl border md:hidden",
+          "transition-all duration-500 ease-soft",
+          scrolled
+            ? "bg-cream/95 backdrop-blur-xl border-forest/15"
+            : "bg-cream/90 backdrop-blur-2xl border-forest/12",
+          "shadow-[0_24px_60px_-20px_rgba(31,61,43,0.45)]",
+          open
+            ? "pointer-events-auto translate-y-0 opacity-100 max-h-[80vh]"
+            : "pointer-events-none -translate-y-2 opacity-0 max-h-0",
         ].join(" ")}
         aria-hidden={!open}
       >
-        <div className="absolute inset-0 bg-cream/95 backdrop-blur-2xl" />
-        <div className="relative z-10 flex h-full flex-col items-end justify-center gap-1 px-8 pt-16 text-right">
-          {NAV_LINKS.map((l, i) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className={[
-                "display text-4xl text-espresso transition-all duration-700 ease-soft",
-                open
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-6 opacity-0",
-              ].join(" ")}
-              style={{ transitionDelay: open ? `${100 + i * 80}ms` : "0ms" }}
-            >
-              {l.label}
-            </Link>
+        <ul className="flex flex-col py-2">
+          {NAV_LINKS.map((l) => (
+            <li key={l.href}>
+              <Link
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="block px-6 py-3.5 text-right text-base text-espresso transition-colors hover:bg-forest/5 hover:text-forest"
+              >
+                {l.label}
+              </Link>
+            </li>
           ))}
+        </ul>
+        <div className="border-t border-forest/10 p-3">
           <a
             href={`tel:${SITE.phone.replace(/-/g, "")}`}
             onClick={() => setOpen(false)}
-            className={[
-              "mt-8 inline-flex items-center gap-3 rounded-full bg-forest px-6 py-3 text-cream transition-all duration-700 ease-soft",
-              open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-            ].join(" ")}
-            style={{ transitionDelay: open ? `${100 + NAV_LINKS.length * 80}ms` : "0ms" }}
+            className="flex items-center justify-center gap-2 rounded-full bg-forest px-5 py-3 text-cream transition-all duration-300 hover:bg-forest-deep active:scale-[0.97]"
           >
-            <Phone size={18} weight="bold" />
+            <Phone size={16} weight="bold" />
             <span dir="ltr">{SITE.phoneDisplay}</span>
           </a>
         </div>

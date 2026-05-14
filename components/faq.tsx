@@ -10,8 +10,8 @@ export function FAQ() {
   return (
     <section id="faq" className="relative py-32 md:py-40 bg-cream-deep/30">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-5">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
             <Eyebrow>שאלות נפוצות</Eyebrow>
             <h2 className="display mt-6 text-4xl md:text-6xl text-espresso">
               קצת תשובות לפני שמדברים.
@@ -21,7 +21,7 @@ export function FAQ() {
             </p>
           </div>
 
-          <ul className="md:col-span-7 space-y-3">
+          <ul className="lg:col-span-7 space-y-3">
             {FAQ_ITEMS.map((f, i) => {
               const isOpen = open === i;
               return (

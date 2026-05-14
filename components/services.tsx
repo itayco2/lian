@@ -23,15 +23,15 @@ export function Services() {
     <section id="services" className="relative py-32 md:py-40 bg-cream-deep/30">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         {/* Header */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
-          <Reveal className="md:col-span-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 md:items-end">
+          <Reveal className="lg:col-span-8">
             <Eyebrow>השירותים שלנו</Eyebrow>
             <h2 className="display mt-6 text-4xl md:text-6xl text-espresso">
               ארבעה תחומים. <br />
               <span className="text-forest">סטנדרט אחד.</span>
             </h2>
           </Reveal>
-          <Reveal delay={150} className="md:col-span-4">
+          <Reveal delay={150} className="lg:col-span-4">
             <p className="text-lg leading-relaxed text-espresso/70 max-w-md md:ms-auto">
               כל שירות נבנה סביב הצרכים הייחודיים של הגינה שלכם. בלי שבלונות.
               בלי קיצורי דרך.
@@ -49,14 +49,14 @@ export function Services() {
               <Reveal key={s.title} delay={i * 90}>
                 <article
                   className={[
-                    "group grid grid-cols-1 gap-8 py-12 md:py-20 md:grid-cols-12 md:gap-14 items-center",
+                    "group grid grid-cols-1 gap-8 py-12 md:py-20 lg:grid-cols-12 lg:gap-14 items-center",
                   ].join(" ")}
                 >
                   {/* Image cell */}
                   <div
                     className={[
-                      "md:col-span-6 relative",
-                      imageLeft ? "md:order-2" : "md:order-1",
+                      "lg:col-span-6 relative",
+                      imageLeft ? "lg:order-2" : "lg:order-1",
                     ].join(" ")}
                   >
                     <div className="relative aspect-[5/4] overflow-hidden rounded-3xl">
@@ -77,8 +77,8 @@ export function Services() {
                   {/* Content cell */}
                   <div
                     className={[
-                      "md:col-span-6",
-                      imageLeft ? "md:order-1" : "md:order-2",
+                      "lg:col-span-6",
+                      imageLeft ? "lg:order-1" : "lg:order-2",
                     ].join(" ")}
                   >
                     {/* Big number eyebrow */}

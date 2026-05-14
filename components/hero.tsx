@@ -1,9 +1,7 @@
 import Image from "next/image";
 import { HERO, HERO_BADGES, SITE } from "@/lib/content";
 import { HERO_IMAGE } from "@/lib/images";
-import { Eyebrow } from "@/components/ui/eyebrow";
 import { CTAButton } from "@/components/ui/button";
-import { ArrowDown } from "@phosphor-icons/react/dist/ssr";
 
 export function Hero() {
   return (
@@ -18,62 +16,51 @@ export function Hero() {
           sizes="100vw"
           className="object-cover"
         />
-        {/* Vertical fade to cream at the bottom (footing under CTAs) */}
+        {/* Soft bottom fade so CTAs blend into the page below */}
         <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/15 to-transparent" />
-        {/* Localized veil ONLY behind text area — radial gradient */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 80% at 75% 50%, rgba(247,244,237,0.78) 0%, rgba(247,244,237,0.45) 35%, rgba(247,244,237,0) 70%)",
-          }}
-        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
-          <div className="md:col-span-8 md:pt-10">
-            <Eyebrow>{HERO.eyebrow}</Eyebrow>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-8 lg:pt-10">
+            {/* Glass card — keeps the garden image visible AROUND the text while ensuring readability */}
+            <div className="rounded-3xl border border-cream/40 bg-cream/75 p-6 md:p-8 lg:p-10 backdrop-blur-xl shadow-[0_24px_60px_-20px_rgba(31,61,43,0.3)]">
+              <h1 className="display text-[clamp(2.75rem,7.5vw,7rem)] font-medium text-espresso">
+                {HERO.title}
+              </h1>
 
-            <h1 className="display mt-7 text-[clamp(3rem,8vw,7.5rem)] font-medium text-espresso">
-              {HERO.title}
-            </h1>
+              {/* Services strip — visual layer with terracotta dots between */}
+              <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 md:gap-x-4">
+                {HERO.services.map((s, i) => (
+                  <li key={s} className="flex items-center gap-3 md:gap-4">
+                    <span className="display text-lg md:text-xl text-forest font-medium">
+                      {s}
+                    </span>
+                    {i < HERO.services.length - 1 && (
+                      <span className="block h-1.5 w-1.5 rounded-full bg-terracotta" aria-hidden />
+                    )}
+                  </li>
+                ))}
+              </ul>
 
-            <p className="mt-7 max-w-[58ch] text-lg leading-relaxed text-espresso/80 md:text-xl">
-              {HERO.subtitle}
-            </p>
+              {/* Pull-quote style subtitle with terracotta accent bar on the start (RTL right) */}
+              <p className="mt-5 max-w-[58ch] border-r-2 border-terracotta/70 pr-4 text-base leading-relaxed text-espresso md:text-lg lg:text-xl">
+                {HERO.subtitle}
+              </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <CTAButton href={`tel:${SITE.phone.replace(/-/g, "")}`} external>
-                {HERO.primaryCta}
-              </CTAButton>
-              <CTAButton href="#services" variant="secondary">
-                {HERO.secondaryCta}
-              </CTAButton>
-            </div>
-
-            <div className="mt-14 flex items-center gap-6 text-sm text-espresso/65">
-              <div className="flex items-center gap-2">
-                <span className="block h-2 w-2 rounded-full bg-terracotta animate-pulse" aria-hidden />
-                <span>זמינים השבוע</span>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <CTAButton href={`tel:${SITE.phone.replace(/-/g, "")}`} external>
+                  {HERO.primaryCta}
+                </CTAButton>
+                <CTAButton href="#services" variant="secondary">
+                  {HERO.secondaryCta}
+                </CTAButton>
               </div>
-              <span className="h-4 w-px bg-espresso/20" aria-hidden />
-              <span>שירות ב{SITE.serviceArea}</span>
             </div>
           </div>
 
-          {/* Scroll cue */}
-          <a
-            href="#about"
-            aria-label="גלילה למטה"
-            className="scroll-cue absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-espresso/15 bg-cream/70 px-4 py-2 text-xs text-espresso/70 backdrop-blur-md md:inline-flex"
-          >
-            <span>גלילה</span>
-            <ArrowDown size={14} weight="bold" />
-          </a>
-
           {/* Right-side trust badges (asymmetric editorial pull-out) */}
-          <aside className="hidden md:col-span-4 md:flex md:items-end md:justify-end">
+          <aside className="hidden lg:col-span-4 lg:flex lg:items-end lg:justify-end">
             <div className="bezel-outer w-full max-w-xs">
               <div className="bezel-inner p-6">
                 <div className="text-[10px] uppercase tracking-[0.22em] text-espresso/60">

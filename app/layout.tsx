@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
+import { CookieConsent } from "@/components/cookie-consent";
 import "./globals.css";
 
 const display = Frank_Ruhl_Libre({
@@ -17,12 +18,17 @@ const body = Heebo({
 });
 
 export const metadata: Metadata = {
-  title: "Lian Gardens — גננות יוקרתית | עיצוב, הקמה ותחזוקה",
+  title: "Lian Gardens — גננות מקצועית במודיעין | עיצוב, הקמה ותחזוקה",
   description:
-    "Lian Gardens — גננות מקצועית בשרון ובמרכז. תחזוקת גינות, עיצוב והקמה, גיזום עצים ומערכות השקיה חכמות. ייעוץ אישי ועבודה מדויקת.",
-  metadataBase: new URL("https://lian-gardens.vercel.app"),
+    "Lian Gardens — גננות מקצועית במודיעין והאזור. תחזוקת גינות, עיצוב והקמה, גיזום עצים ושתילה. ייעוץ אישי ועבודה מדויקת.",
+  metadataBase: new URL("https://lian-rose.vercel.app"),
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
-    title: "Lian Gardens — גננות יוקרתית",
+    title: "Lian Gardens — גננות מקצועית",
     description: "גינות שמתוכננות לחיות איתך.",
     locale: "he_IL",
     type: "website",
@@ -32,8 +38,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="he" dir="rtl" className={`${display.variable} ${body.variable}`}>
-      <body className="grain bg-cream text-espresso antialiased">{children}</body>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${display.variable} ${body.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="grain bg-cream text-espresso antialiased">
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

@@ -6,7 +6,6 @@ import { Services } from "@/components/services";
 import { Values } from "@/components/values";
 import { Testimonials } from "@/components/testimonials";
 import { FAQ } from "@/components/faq";
-import { Contact } from "@/components/contact";
 import { CtaBanner } from "@/components/cta-banner";
 import { Footer } from "@/components/footer";
 
@@ -22,7 +21,6 @@ export default function HomePage() {
         <Values />
         <Testimonials />
         <FAQ />
-        <Contact />
         <CtaBanner />
       </main>
       <Footer />

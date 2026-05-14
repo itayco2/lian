@@ -86,6 +86,13 @@ body {
     inset 0 -1px 0 rgba(31, 61, 43, 0.04);
   overflow: hidden;
 }
+/* Allow overriding the bezel-inner background via utility classes (e.g. bg-forest) */
+.bezel-inner.bg-forest {
+  background: rgb(var(--color-forest));
+}
+.bezel-inner.bg-forest-deep {
+  background: rgb(var(--color-forest-deep));
+}
 
 /* Ken Burns slow zoom for hero image */
 .ken-burns {

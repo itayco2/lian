@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Lian Gardens — גננות מקצועית",
-    description: "גינות שמתוכננות לחיות איתך.",
+    description: "גינות שמתוכננות לחיות איתך",
     locale: "he_IL",
     type: "website",
   },

@@ -48,8 +48,11 @@ export function Hero() {
                 {HERO.subtitle}
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <CTAButton href={`tel:${SITE.phone.replace(/-/g, "")}`} external>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <CTAButton
+                  href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(SITE.whatsappMessage)}`}
+                  external
+                >
                   {HERO.primaryCta}
                 </CTAButton>
                 <CTAButton href="#services" variant="secondary">
